@@ -8,6 +8,7 @@ import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
 
 public class Board {
+
     private final List<List<Space>> spaces;
 
     public Board(final List<List<Space>> spaces) {
@@ -26,12 +27,12 @@ public class Board {
                 ? INCOMPLETE : COMPLETE;
     }
 
-    public boolean hasError() {
+    public boolean hasErrors() {
         if (getStatus() == NON_STARTED) {
             return false;
         }
         return spaces.stream().flatMap(Collection::stream)
-                .anyMatch(s -> nonNull(s.getActual().equals(s.getExpected())));
+                .anyMatch(s -> nonNull(s.getActual()) && !s.getActual().equals(s.getExpected()));
     }
 
     public boolean changeValue(final int col, final int row, final int value) {
@@ -56,7 +57,7 @@ public class Board {
         spaces.forEach(c -> c.forEach(Space::clearSpace));
     }
 
-    public boolean gameIsFinish() {
-        return !hasError() && getStatus().equals(COMPLETE);
+    public boolean gameIsFinished() {
+        return !hasErrors() && getStatus().equals(COMPLETE);
     }
 }
