@@ -101,7 +101,7 @@ public class Main {
         var args = new Object[81];
         var argPos = 0;
         for (int i = 0; i < BOARD_LIMIT; i++) {
-            for (var col : board.getSpaces()) {
+            for (var col : board.spaces()) {
                 args[argPos++] = " " + ((isNull(col.get(i).getActual())) ? " " : col.get(i).getActual());
             }
         }

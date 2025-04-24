@@ -19,7 +19,7 @@ public class BoardService {
     }
 
     public List<List<Space>> getSpaces() {
-        return board.getSpaces();
+        return board.spaces();
     }
 
     public void reset() {
